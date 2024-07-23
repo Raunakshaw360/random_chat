@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_pages/app_pages/bottom_nav.dart';
+import 'app_pages/app_pages/contacts_screen.dart';
 import 'app_pages/app_pages/home_page.dart';
 
 void main() {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChatScreen(),
+      home: ContactsScreen(),
     );
   }
 }

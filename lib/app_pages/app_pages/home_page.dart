@@ -40,12 +40,12 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat'),
+        title: Text('Random Chat',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.teal[700],
         elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.more_vert),
+            icon: Icon(Icons.more_vert,color: Colors.white,),
             onPressed: () {},
           ),
         ],
