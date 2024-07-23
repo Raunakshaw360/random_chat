@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:random_chat/app_pages/app_pages/profile.dart';
+
+import 'contacts_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,10 +35,27 @@ class _MyHomePageState extends State<Nav> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 0) {
+      // Navigate to HomeScreen when the message button is pressed
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ContactsScreen()),
+      );
+    }
+    if (index == 2) {
+      // Navigate to HomeScreen when the message button is pressed
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileScreen()),
+      );
+    }
+    else {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +75,7 @@ class _MyHomePageState extends State<Nav> {
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Add',
+
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

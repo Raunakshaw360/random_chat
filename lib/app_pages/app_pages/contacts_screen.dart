@@ -1,6 +1,8 @@
 // lib/contacts_screen.dart
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 class ContactsScreen extends StatelessWidget {
   final List<Map<String, String>> contacts = [
     {'name': 'John Doe', 'message': 'Hey there!', 'avatar': 'assets/avatar1.png'},
@@ -40,8 +42,13 @@ class ContactsScreen extends StatelessWidget {
             title: Text(contacts[index]['name']!),
             subtitle: Text(contacts[index]['message']!),
             onTap: () {
-              // Navigate to a detailed chat screen if needed
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatScreen()),
+              );
             },
+
           );
         },
       ),
