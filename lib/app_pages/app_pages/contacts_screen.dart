@@ -1,7 +1,7 @@
 // lib/contacts_screen.dart
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import 'chat_page.dart';
 
 class ContactsScreen extends StatelessWidget {
   final List<Map<String, String>> contacts = [

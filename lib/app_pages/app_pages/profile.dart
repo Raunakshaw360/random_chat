@@ -6,6 +6,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -13,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
           },
         ),
         title: Text('Profile'),
-        backgroundColor: Colors.blueAccent,
+
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

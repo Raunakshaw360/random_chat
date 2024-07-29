@@ -1,90 +1,97 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:random_chat/app_pages/app_pages/contacts_screen.dart';
 import 'package:random_chat/app_pages/app_pages/profile.dart';
 
-import 'contacts_screen.dart';
+import 'home_page.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bottom Navigation Bar Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home:Nav(),
-    );
-  }
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class Nav extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+class MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 1;
 
-class _MyHomePageState extends State<Nav> {
-  int _selectedIndex = 0;
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Messages Page'),
-    Text('Add Page'),
-    Text('Profile Page'),
+  final List<Widget> _widgetOptions = <Widget>[
+    HomeScreen(),
+    ContactsScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
-    if (index == 0) {
-      // Navigate to HomeScreen when the message button is pressed
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ContactsScreen()),
-      );
-    }
-    if (index == 2) {
-      // Navigate to HomeScreen when the message button is pressed
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ProfileScreen()),
-      );
-    }
-    else {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
+    setState(() {
+      _selectedIndex = index;
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: bg));
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bottom Navigation Bar Example'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Message',
+      body: _widgetOptions[_selectedIndex],
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Divider(
+            height: 1,
+            thickness: 0.3,
+            color: Colors.grey.shade600,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add',
-
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+          Container(
+            color: Colors.black,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                _buildNavItem(
+                  icon: Icons.home_outlined,
+                  label: 'home',
+                  index: 0,
+                ),
+                _buildNavItem(
+                  icon: Icons.chat,
+                  label: 'AI',
+                  index: 1,
+                ),
+                _buildNavItem(
+                  icon: Icons.person,
+                  label: 'Profile',
+                  index: 2,
+                ),
+              ],
+            ),
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+      ),
+    );
+  }
+
+  Widget _buildNavItem({required IconData icon, required String label, required int index}) {
+    final bool isSelected = _selectedIndex == index;
+    final Color color = isSelected ? Color(0xFFFFFFFF) : Colors.grey.shade600;
+    final TextStyle textStyle = TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      height: 0,
+      color: color,
+
+    );
+
+    return InkWell(
+      onTap: () => _onItemTapped(index),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(icon, size: 20, color: color),
+            Text(label, style: textStyle),
+          ],
+        ),
       ),
     );
   }
