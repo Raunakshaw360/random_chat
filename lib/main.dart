@@ -4,7 +4,7 @@ import 'app_pages/app_pages/ai_page.dart';
 import 'app_pages/app_pages/bottom_nav.dart';
 import 'app_pages/app_pages/home_page.dart';
 
-
+//day1
 void main() {
   runApp(const MyApp());
 }
