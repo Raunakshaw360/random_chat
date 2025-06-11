@@ -5,6 +5,7 @@ import 'package:random_chat/app_pages/app_pages/contacts_screen.dart';
 import 'package:random_chat/app_pages/app_pages/profile.dart';
 
 import 'home_page.dart';
+//goo
 
 
 class MyHomePage extends StatefulWidget {
